@@ -43,15 +43,10 @@ abstract class Controller
     {
         /** @var User */
         $user = Auth::user();
-        $can = $user->can($this->getPermissionName($action, $model));
+        $can = $user->can($action->getNameForModel($model));
 
         if (! $can) {
             abort(403);
         }
-    }
-
-    private function getPermissionName(PermissionAction $action, Model | string $model): string
-    {
-        return strtolower(class_basename($model)) . ':' . $action->value;
     }
 }

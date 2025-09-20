@@ -2,6 +2,8 @@
 
 namespace App\Enum;
 
+use Illuminate\Database\Eloquent\Model;
+
 enum PermissionAction: string
 {
     case List = 'list';
@@ -11,4 +13,9 @@ enum PermissionAction: string
     case Create = 'create';
 
     case Update = 'update';
+
+    public function getNameForModel(Model | string $model): string
+    {
+        return strtolower(class_basename($model)) . ':' . $this->value;
+    }
 }
