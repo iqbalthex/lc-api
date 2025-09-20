@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'cf_worker' => [
+        'jht_checker' => [
+            'secret_key' => env('CF_JHT_CHECKER_SECRET_KEY'),
+        ],
+    ],
 ];
